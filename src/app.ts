@@ -1,5 +1,6 @@
-import cors from 'cors';
-import express from 'express';
+import * as cors from 'cors';
+import * as express from 'express';
+import { errorHandler } from './middlewares/errorHandler';
 
 import { createRoutes } from './routes';
 
@@ -11,5 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 createRoutes(app);
+
+app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`Server is running on port: ${PORT}`));

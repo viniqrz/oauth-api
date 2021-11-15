@@ -1,13 +1,13 @@
 import { Router } from 'express';
-import { UserController } from '../controllers/UserController';
 import { UserService } from '../services/UserService';
-import { prisma } from '../database';
+import { UserController } from '../controllers/UserController';
 
 const router = Router();
 
-const service = new UserService(prisma);
+const service = new UserService();
 const controller = new UserController(service);
 
 router.post('/signin/google', controller.signInWithGoogle);
+router.post('/signin/fb', controller.signInWithFacebook);
 
 export { router as userRouter };
